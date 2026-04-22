@@ -9,6 +9,9 @@
   position: relative;
 }
 
+.main-content {
+  max-width: 500px;
+}
 /* Display */
 
 .display-wrapper {
@@ -24,7 +27,6 @@
 .card-container-item {
   background: rgba(255, 255, 255, 0.411);
   backdrop-filter: blur(5px);
-  max-width: 70%;
 }
 
 .card-container-item img {

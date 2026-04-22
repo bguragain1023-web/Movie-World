@@ -1,8 +1,9 @@
 import React from "react";
+import { MovieCard } from "./MovieCard";
 
 export const Display = () => {
   return (
-    <div className="display-wrapper ">
+    <div className="display-wrapper pt-4 pb-4">
       <div className="catagory-button">
         <div className="btn btn-primary">All</div>
         <div className="btn btn-success">Drama</div>
@@ -10,10 +11,28 @@ export const Display = () => {
       </div>
 
       <div className="container mt-5">
-        <div className="row">
-          <div className="col bg-success">card1</div>
-          <div className="col bg-primary">card2</div>
-          <div className="col bg-warning">card3</div>
+        <div className="row gy-3">
+          <div className="col-md-4 gap-1">
+            <MovieCard />
+          </div>
+          <div className="col-md-4 gap-1">
+            <MovieCard />
+          </div>
+          <div className="col-md-4 gap-1">
+            <MovieCard />
+          </div>{" "}
+          <div className="col-md-4">
+            <MovieCard />
+          </div>{" "}
+          <div className="col-md-4">
+            <MovieCard />
+          </div>{" "}
+          <div className="col-md-4">
+            <MovieCard />
+          </div>
+          <div className="col-md-4">
+            <MovieCard />
+          </div>
         </div>
       </div>
     </div>

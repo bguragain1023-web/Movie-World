@@ -4,7 +4,7 @@ export const MovieCard = () => {
   const poster = "https://www.omdbapi.com/src/poster.jpg";
   return (
     <div className="container d-flex justify-content-center ">
-      <div className="row border rounded-3 text-dark p-3  card-container-item ">
+      <div className="row border border-dark rounded-5 text-dark p-3  card-container-item shadow-lg  ">
         <div className="col-md  ">
           <img src={poster} alt="" />
         </div>
