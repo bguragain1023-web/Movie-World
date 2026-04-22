@@ -1,0 +1,40 @@
+/* Navbar */
+.nav-edit {
+  background: rgba(0, 0, 0, 0.308);
+}
+
+/* Hero */
+.hero-section {
+  min-height: 90vh;
+  position: relative;
+}
+
+/* Display */
+
+.display-wrapper {
+  background: #1876b4;
+  min-height: 300px;
+}
+
+.catagory-button .btn {
+  width: 100px;
+}
+/* card */
+
+.card-container-item {
+  background: rgba(255, 255, 255, 0.411);
+  backdrop-filter: blur(5px);
+  max-width: 70%;
+}
+
+.card-container-item img {
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .card-container-item img {
+    max-height: 180px;
+    object-fit: cover;
+  }
+}

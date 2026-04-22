@@ -1,10 +1,16 @@
 import "./App.css";
+import { Display } from "./components/Display";
+import { Hero } from "./components/Hero";
 
 function App() {
   return (
-    <>
-      <h1>Hello movie world </h1>
-    </>
+    <div className="wrapper">
+      {/* hero section */}
+      <Hero />
+
+      {/* display section */}
+      <Display />
+    </div>
   );
 }
 
