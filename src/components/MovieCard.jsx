@@ -1,20 +1,18 @@
 import React from "react";
 
-export const MovieCard = () => {
-  const poster = "https://www.omdbapi.com/src/poster.jpg";
+export const MovieCard = ({ searchedMovie }) => {
+  const { Poster, Title, imdbRating, Plot } = searchedMovie;
+
   return (
     <div className="container d-flex justify-content-center ">
       <div className="row border border-dark rounded-5 text-dark p-3  card-container-item shadow-lg  ">
         <div className="col-md  ">
-          <img src={poster} alt="" />
+          <img src={Poster} alt="" />
         </div>
         <div className="col-md ">
-          <h3>moviename</h3>
-          <p>IMDB:5.5</p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
-            praesentium assumenda iste eaque
-          </p>
+          <h3>{Title}</h3>
+          <p>IMDB: {imdbRating} </p>
+          <p>{Plot?.slice(0, 100)}........</p>
 
           <div className="d-flex justify-content-between">
             <button className="btn btn-warning">Drama</button>

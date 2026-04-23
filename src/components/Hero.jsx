@@ -1,11 +1,38 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { MovieCard } from "./MovieCard";
+import { fetchFromAPI } from "../utils/axios";
+import { randomChar } from "../utils/random";
 
 export const Hero = () => {
+  const [searchedMovie, setSearchedMovie] = useState({});
+  const [bgImg, setBgImg] = useState("");
+
+  const shouldFetchRef = useRef(true);
+  const searchedRef = useRef("");
+
+  useEffect(() => {
+    if (shouldFetchRef.current) {
+      fetchMovie(randomChar());
+      shouldFetchRef.current = false;
+    }
+  }, []);
+
+  const fetchMovie = async (str) => {
+    const movie = await fetchFromAPI(str);
+    setSearchedMovie(movie);
+    setBgImg(movie.Poster);
+  };
+
+  const handleOnMovieSearch = () => {
+    const str = searchedRef.current.value;
+    fetchMovie(str || randomChar());
+    searchedRef.current.value = "";
+  };
+
   const movieStyle = {
-    backgroundImage: `url("https://www.omdbapi.com/src/poster.jpg")`,
+    backgroundImage: `url(${bgImg})`,
     backgroundRepeat: "no-repeat",
-    bachgroundPosition: "center",
+    backgroundPosition: "center",
     backgroundSize: "cover",
     height: "70vh",
   };
@@ -34,19 +61,25 @@ export const Hero = () => {
 
           <div className="input-group mb-3 my-4">
             <input
+              ref={searchedRef}
               type="text"
               className="form-control"
               placeholder="Search Movie Name "
-              aria-label="Recipients username"
+              aria-label="Search Movie Name "
               aria-describedby="button-addon2"
             />
-            <button className="btn btn-danger" type="button" id="button-addon2">
+            <button
+              className="btn btn-danger"
+              type="button"
+              id="button-addon2"
+              onClick={handleOnMovieSearch}
+            >
               Search
             </button>
           </div>
 
           <div className="movie-card-container">
-            <MovieCard />
+            <MovieCard searchedMovie={searchedMovie} />
           </div>
         </div>
       </div>

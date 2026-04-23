@@ -12,27 +12,7 @@ export const Display = () => {
 
       <div className="container mt-5">
         <div className="row gy-3">
-          <div className="col-md-4 gap-1">
-            <MovieCard />
-          </div>
-          <div className="col-md-4 gap-1">
-            <MovieCard />
-          </div>
-          <div className="col-md-4 gap-1">
-            <MovieCard />
-          </div>{" "}
-          <div className="col-md-4">
-            <MovieCard />
-          </div>{" "}
-          <div className="col-md-4">
-            <MovieCard />
-          </div>{" "}
-          <div className="col-md-4">
-            <MovieCard />
-          </div>
-          <div className="col-md-4">
-            <MovieCard />
-          </div>
+          <div className="col-md-4 gap-1">{/* <MovieCard /> */}</div>
         </div>
       </div>
     </div>
