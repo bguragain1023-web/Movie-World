@@ -1,7 +1,9 @@
 import React from "react";
 import { MovieCard } from "./MovieCard";
 
-export const Display = () => {
+export const Display = ({ movieList }) => {
+  console.log(movieList);
+
   return (
     <div className="display-wrapper pt-4 pb-4">
       <div className="catagory-button">

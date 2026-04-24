@@ -3,9 +3,10 @@ import { MovieCard } from "./MovieCard";
 import { fetchFromAPI } from "../utils/axios";
 import { randomChar } from "../utils/random";
 
-export const Hero = () => {
+export const Hero = ({ addMovieToList }) => {
   const [searchedMovie, setSearchedMovie] = useState({});
   const [bgImg, setBgImg] = useState("");
+  const [searching, setSearching] = useState(false);
 
   const shouldFetchRef = useRef(true);
   const searchedRef = useRef("");
@@ -21,6 +22,7 @@ export const Hero = () => {
     const movie = await fetchFromAPI(str);
     setSearchedMovie(movie);
     setBgImg(movie.Poster);
+    setSearching(false);
   };
 
   const handleOnMovieSearch = () => {
@@ -28,7 +30,15 @@ export const Hero = () => {
     fetchMovie(str || randomChar());
     searchedRef.current.value = "";
   };
-
+  const handleOnDelete = () => {
+    setSearchedMovie({});
+    setSearching(true);
+  };
+  const handleOnAddToList = (mood) => {
+    addMovieToList({ ...searchedMovie, mood });
+    setSearchedMovie({});
+    setSearching(true);
+  };
   const movieStyle = {
     backgroundImage: `url(${bgImg})`,
     backgroundRepeat: "no-repeat",
@@ -50,37 +60,49 @@ export const Hero = () => {
         style={movieStyle}
       >
         <div className="main-content ">
-          <div className="text-white d-flex flex-column justify-content-center align-items-center ">
-            <div className="title   fs-4 fw-bolder">
-              Search from millions of movies
+          <div className={searching ? "form-center" : "form-top"}>
+            {searching && (
+              <div className="text-center">
+                <div className="title   fs-4 fw-bolder">
+                  Search from millions of movies
+                </div>
+                <span>
+                  Find any movies and view descrition, rating and add to your
+                  list
+                </span>
+              </div>
+            )}
+
+            <div className="input-group mb-3 my-4">
+              <input
+                ref={searchedRef}
+                onFocus={() => setSearching(true)}
+                type="text"
+                className="form-control"
+                placeholder="Search Movie Name "
+                aria-label="Search Movie Name "
+                aria-describedby="button-addon2"
+              />
+              <button
+                className="btn btn-danger"
+                type="button"
+                id="button-addon2"
+                onClick={handleOnMovieSearch}
+              >
+                Search
+              </button>
             </div>
-            <span>
-              Find any movies and view descrition, rating and add to your list
-            </span>
           </div>
 
-          <div className="input-group mb-3 my-4">
-            <input
-              ref={searchedRef}
-              type="text"
-              className="form-control"
-              placeholder="Search Movie Name "
-              aria-label="Search Movie Name "
-              aria-describedby="button-addon2"
-            />
-            <button
-              className="btn btn-danger"
-              type="button"
-              id="button-addon2"
-              onClick={handleOnMovieSearch}
-            >
-              Search
-            </button>
-          </div>
-
-          <div className="movie-card-container">
-            <MovieCard searchedMovie={searchedMovie} />
-          </div>
+          {!searching && (
+            <div className="movie-card-container showMovie">
+              <MovieCard
+                searchedMovie={searchedMovie}
+                handleOnDelete={handleOnDelete}
+                handleOnAddToList={handleOnAddToList}
+              />
+            </div>
+          )}
         </div>
       </div>
     </>
