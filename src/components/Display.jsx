@@ -1,20 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MovieCard } from "./MovieCard";
 
-export const Display = ({ movieList }) => {
+export const Display = ({ movieList, deleteFromList }) => {
+  const [displayList, setDisplayList] = useState([]);
   console.log(movieList);
+
+  useEffect(() => {
+    setDisplayList(movieList);
+  }, [movieList]);
+
+  const handleOnFilter = (mood) => {
+    if (mood === "all") return setDisplayList(movieList);
+
+    const filteredMovieList = movieList.filter((item) => item.mood == mood);
+    setDisplayList(filteredMovieList);
+  };
 
   return (
     <div className="display-wrapper pt-4 pb-4">
       <div className="catagory-button">
-        <div className="btn btn-primary">All</div>
-        <div className="btn btn-success">Drama</div>
-        <div className="btn btn-warning">Action</div>
+        <div className="btn btn-primary" onClick={() => handleOnFilter("all")}>
+          All
+        </div>
+        <div
+          className="btn btn-success"
+          onClick={() => handleOnFilter("drama")}
+        >
+          Drama
+        </div>
+        <div
+          className="btn btn-warning"
+          onClick={() => handleOnFilter("action")}
+        >
+          Action
+        </div>
       </div>
 
+      <div>Total movies : {displayList.length}</div>
+
       <div className="container mt-5">
-        <div className="row gy-3">
-          <div className="col-md-4 gap-1">{/* <MovieCard /> */}</div>
+        <div className="row align-items-stretch gy-3">
+          {displayList.map((item, i) => (
+            <div className="col-md-4 gap-1" key={i}>
+              <MovieCard searchedMovie={item} deleteFromList={deleteFromList} />
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 
 export const MovieCard = ({
   searchedMovie,
   handleOnDelete,
   handleOnAddToList,
+  deleteFromList,
 }) => {
-  const { Poster, Title, imdbRating, Plot } = searchedMovie;
-  const [isDelete, setIsDelete] = useState(false);
+  if (!searchedMovie) return null;
+  const { Poster, imdbID, Title, imdbRating, Plot, mood } = searchedMovie;
 
   return (
     <div className="container d-flex justify-content-center ">
@@ -19,22 +20,28 @@ export const MovieCard = ({
           <p>IMDB: {imdbRating} </p>
           <p>{Plot?.slice(0, 100)}........</p>
 
-          <div className="d-flex justify-content-between">
-            <button
-              className="btn btn-warning"
-              onClick={() => handleOnAddToList("drama")}
-            >
-              Drama
-            </button>
-            <button
-              className="btn btn-info"
-              onClick={() => handleOnAddToList("action")}
-            >
-              Action
-            </button>
-          </div>
+          {!mood && (
+            <div className="d-flex justify-content-between">
+              <button
+                className="btn btn-warning"
+                onClick={() => handleOnAddToList("drama")}
+              >
+                Drama
+              </button>
+              <button
+                className="btn btn-info"
+                onClick={() => handleOnAddToList("action")}
+              >
+                Action
+              </button>
+            </div>
+          )}
+
           <div className="d-grid mt-3">
-            <button className="btn btn-danger" onClick={handleOnDelete}>
+            <button
+              className="btn btn-danger"
+              onClick={!mood ? handleOnDelete : () => deleteFromList(imdbID)}
+            >
               Delete{" "}
             </button>
           </div>
