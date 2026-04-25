@@ -15,21 +15,21 @@ export const MovieCard = ({
         <div className="col-md  ">
           <img src={Poster} alt="" />
         </div>
-        <div className="col-md ">
+        <div className="col-md">
           <h3>{Title}</h3>
           <p>IMDB: {imdbRating} </p>
           <p>{Plot?.slice(0, 100)}........</p>
 
           {!mood && (
-            <div className="d-flex justify-content-between">
+            <div className="d-flex justify-content-between gap-2">
               <button
-                className="btn btn-warning"
+                className="btn btn-warning flex-grow-1"
                 onClick={() => handleOnAddToList("drama")}
               >
                 Drama
               </button>
               <button
-                className="btn btn-info"
+                className="btn btn-info flex-grow-1"
                 onClick={() => handleOnAddToList("action")}
               >
                 Action

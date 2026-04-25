@@ -17,8 +17,8 @@ export const Display = ({ movieList, deleteFromList }) => {
   };
 
   return (
-    <div className="display-wrapper pt-4 pb-4">
-      <div className="catagory-button">
+    <div className=" container border rounded-2 display-wrapper mt-5 pt-4 pb-4">
+      <div className="catagory-button border rounded-2 d-flex p-2 gap-2 w-25 shadow-lg">
         <div className="btn btn-primary" onClick={() => handleOnFilter("all")}>
           All
         </div>
@@ -39,7 +39,7 @@ export const Display = ({ movieList, deleteFromList }) => {
       <div>Total movies : {displayList.length}</div>
 
       <div className="container mt-5">
-        <div className="row align-items-stretch gy-3">
+        <div className="row align-items-stretch gy-3  p-2">
           {displayList.map((item, i) => (
             <div className="col-md-4 gap-1" key={i}>
               <MovieCard searchedMovie={item} deleteFromList={deleteFromList} />
