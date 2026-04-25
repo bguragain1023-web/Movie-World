@@ -1,13 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import { Display } from "./components/Display";
 import { Hero } from "./components/Hero";
+import {
+  storeInLocalSession,
+  accessFromLocalSession,
+} from "./utils/localStorage";
 
 function App() {
   const [movieList, setMovieList] = useState([]);
+
+  useEffect(() => {
+    const mvList = accessFromLocalSession();
+    mvList?.length && setMovieList(mvList);
+  }, []);
+
   const addMovieToList = (movie) => {
     const tempMv = movieList.filter((item) => item.imdbID !== movie.imdbID);
+
     setMovieList([...tempMv, movie]);
+    storeInLocalSession([...tempMv, movie]);
   };
 
   const deleteFromList = (imdbID) => {

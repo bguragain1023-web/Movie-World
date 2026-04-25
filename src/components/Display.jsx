@@ -18,7 +18,7 @@ export const Display = ({ movieList, deleteFromList }) => {
 
   return (
     <div className=" container border rounded-2 display-wrapper mt-5 pt-4 pb-4">
-      <div className="catagory-button border rounded-2 d-flex p-2 gap-2 w-25 shadow-lg">
+      <div className="catagory-button  d-flex p-2 gap-2  shadow-lg">
         <div className="btn btn-primary" onClick={() => handleOnFilter("all")}>
           All
         </div>
