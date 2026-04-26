@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiKey = import.meta.env.VITE_APIKey;
-const ApiEP = `http://www.omdbapi.com/?apikey=${apiKey}&`;
+const ApiEP = `https://www.omdbapi.com/?apikey=${apiKey}&`;
 
 export const fetchFromAPI = async (str) => {
   try {
