@@ -19,8 +19,8 @@ Movie world applicaition fetches a random movies on load and display it as an in
 
 ## Screenshots
 
-![Hero Section](assets/hero.JPG)
-![Display Section](assets/display.JPG)
+![Hero Section](src/assets/hero.JPG)
+![Display Section](src/assets/display.JPG)
 
 ## Features
 
