@@ -5,6 +5,7 @@ import { Hero } from "./components/Hero";
 import {
   storeInLocalSession,
   accessFromLocalSession,
+  deleteFromLocalStorage,
 } from "./utils/localStorage";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
 
   const deleteFromList = (imdbID) => {
     setMovieList(movieList.filter((item) => item.imdbID !== imdbID));
+    deleteFromLocalStorage(imdbID);
   };
 
   return (
